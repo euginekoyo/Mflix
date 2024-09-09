@@ -74,12 +74,11 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/movies', movieRoutes);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Catch-all handler to serve index.html for any non-API routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../
-                         client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
