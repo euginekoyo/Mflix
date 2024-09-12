@@ -142,7 +142,7 @@ const AuthForm = () => {
     <FormContainer>
       <FormTitle>{isSignup ? 'Sign Up' : 'Login'}</FormTitle>
       <form onSubmit={handleSubmit}>
-      {loading && <Loader />}
+
         {isSignup && (
           <>
             <Input
@@ -169,6 +169,7 @@ const AuthForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+                  {loading && <Loader />}
         <Button type="submit">{isSignup ? 'Sign Up' : 'Login'}</Button>
         <ToggleLink onClick={() => setIsSignup(!isSignup)}>
           {isSignup ? 'Already have an account? Login' : 'Don\'t have an account? Sign Up'}
