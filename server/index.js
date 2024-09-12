@@ -25,7 +25,7 @@ connectDB();
 // Middleware
 app.use(helmet());
 const corsOptions = {
-    origin: 'https://mflix-2.onrender.com', 
+    origin: 'https://mflix-blush.vercel.app', 
     credentials: true, // Allow credentials (cookies) to be sent
 };
 app.use(cors(corsOptions));
