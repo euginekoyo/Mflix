@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 import { useAuth } from '../../context/authContext';
-
+import Loader from './loading';
 const slideIn = keyframes`
   from {
     opacity: 0;
@@ -18,9 +18,9 @@ const slideIn = keyframes`
 
 const FormContainer = styled.div`
   width: 300px;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:80px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -83,6 +83,8 @@ const AuthForm = () => {
   const [role, setRole] = useState('user'); // Default role
   const { isAuthenticated, isAdmin, login } = useAuth();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL; // Use environment variable
 
   // Redirect authenticated users away from the auth form
   useEffect(() => {
@@ -91,28 +93,28 @@ const AuthForm = () => {
       try {
         const user = JSON.parse(storedUser);
         // Update state or context with user data
-         setUsername(user.username); 
-         setEmail(user.email);
+        setUsername(user.username);
+        setEmail(user.email);
       } catch (error) {
         console.error('Failed to parse user data:', error);
         localStorage.removeItem('user'); // Clear invalid data
       }
     }
   }, [isAuthenticated, isAdmin, navigate]);
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const url = isSignup 
-        ? `${process.env.REACT_APP_API_BASE_URL}/api/auth/signup` 
-        : `${process.env.REACT_APP_API_BASE_URL}/api/auth/login`;
+        ? `${API_BASE_URL}/api/auth/signup`
+        : `${API_BASE_URL}/api/auth/login`;
       const data = isSignup 
         ? { username, email, password, role } 
         : { email, password };
-  
+
       const response = await axios.post(url, data);
-  
+
       if (isSignup && response.data.isAuthenticated) {
         alert('Signup successful');
         localStorage.setItem('user', JSON.stringify(response.data.user)); // Store user data
@@ -131,14 +133,16 @@ const AuthForm = () => {
       console.error(`${isSignup ? 'Signup' : 'Login'} failed:`, error.response ? error.response.data : error.message);
       alert(`${isSignup ? 'Signup' : 'Login'} failed: ${error.response ? error.response.data.message : error.message}`);
     }
+    finally {
+      setLoading(false); // Set loading to false after processing
+    }
   };
-  
-  
 
   return (
     <FormContainer>
       <FormTitle>{isSignup ? 'Sign Up' : 'Login'}</FormTitle>
       <form onSubmit={handleSubmit}>
+      {loading && <Loader />}
         {isSignup && (
           <>
             <Input
@@ -169,7 +173,7 @@ const AuthForm = () => {
         <ToggleLink onClick={() => setIsSignup(!isSignup)}>
           {isSignup ? 'Already have an account? Login' : 'Don\'t have an account? Sign Up'}
         </ToggleLink>
-        <Link className="btn  mt-5 btn-outline-primary btn-sm" to={'/dashboard'}> Guest</Link>
+        <Link className="btn mt-5 btn-outline-primary btn-sm" to={'/dashboard'}> Guest</Link>
       </form>
     </FormContainer>
   );

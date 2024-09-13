@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/authContext'; // Ensure this is the correct path
 
 const SidebarWrapper = styled.div`
-  width: ${({ isVisible }) => (isVisible ? '100px' : '50px')};
+  width: ${({ isVisible }) => (isVisible ? '100px' : '80px')};
   height: 100vh;
   background: ${({ isVisible }) => isVisible ?
     'linear-gradient(135deg, red, white)' : 'linear-gradient(135deg, red, blue)'};  

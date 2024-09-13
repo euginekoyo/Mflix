@@ -25,7 +25,8 @@ connectDB();
 // Middleware
 app.use(helmet());
 const corsOptions = {
-    origin: 'https://mflix-2.onrender.com', 
+    origin:'http://localhost:3000',
+    //origin: 'https://mflix-2.onrender.com', 
     credentials: true, // Allow credentials (cookies) to be sent
 };
 app.use(cors(corsOptions));
@@ -39,6 +40,8 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({
+            //mongoUrl: process.env.MONGO_URI || 'mongodb://localhost:27017/mflix',
+            
             mongoUrl: process.env.MONGO_URI || 'mongodb+srv://euginekoyo141:WZHtVTFRwxgd57JQ@cluster0.jbv3i.mongodb.net/',
         }),
         cookie: {
