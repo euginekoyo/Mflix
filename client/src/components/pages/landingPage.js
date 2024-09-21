@@ -58,7 +58,7 @@ const LandingPage = () => {
       <Heading>M-Flix</Heading>
       <SubHeading>Your ultimate movie management solution</SubHeading>
       <Link to="/authForm"><Button>Get Started</Button></Link>
-      <GradientText>@Eugine laMELO</GradientText>
+      
     </LandingContainer>
   );
 };
