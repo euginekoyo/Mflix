@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
         if (storedIsAuthenticated === 'true') {
             setIsAuthenticated(true);
-            console.log(isAdmin)
+            console.log(isAdmin);
             setIsAdmin(storedIsAdmin === 'true');
         }
     }, []);
@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
                 setIsAdmin(response.data.isAdmin);
                 // Store authentication state in localStorage
                 localStorage.setItem('isAuthenticated', 'true');
+                console.log(isAdmin);
                 localStorage.setItem('isAdmin', response.data.isAdmin ? 'true' : 'false');
             }
         } catch (error) {
