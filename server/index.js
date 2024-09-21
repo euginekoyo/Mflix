@@ -43,7 +43,7 @@ app.use(
         store: MongoStore.create({
             //mongoUrl: process.env.MONGO_URI || 'mongodb://localhost:27017/mflix',
             
-            mongoUrl: process.env.MONGO_URI || 'mongodb+srv://euginekoyo141:WZHtVTFRwxgd57JQ@cluster0.jbv3i.mongodb.net/',
+           mongoUrl: process.env.MONGO_URI || 'mongodb+srv://euginekoyo141:WZHtVTFRwxgd57JQ@cluster0.jbv3i.mongodb.net/',
         }),
         cookie: {
             maxAge: 1000 * 60 * 60 * 24, // 1 day

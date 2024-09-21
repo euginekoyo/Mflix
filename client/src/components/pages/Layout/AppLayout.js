@@ -36,8 +36,8 @@ const AppLayout = () => {
 
   return (
     <>
-      <Sidebar isVisible={sidebarVisible} toggleSidebar={toggleSidebar} />
       <PageWrapper isSidebarVisible={sidebarVisible}>
+      <Sidebar isVisible={sidebarVisible} toggleSidebar={toggleSidebar} />
         <Topbar toggleSidebar={toggleSidebar} />
         <MainContent isSidebarVisible={sidebarVisible}>
           <Routes>

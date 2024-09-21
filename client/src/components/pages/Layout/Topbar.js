@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaSearch, FaBars } from 'react-icons/fa';
-
+import {FaUserEdit, FaSearch, FaBars } from 'react-icons/fa';
+import { HiOutlineLogout } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 const TopbarWrapper = styled.div`
   width: 100%;
   height: 60px;
@@ -108,7 +109,7 @@ const Popover = styled.div`
   position: absolute;
   top: 50px; /* Adjust position according to your design */
   right: 0;
-  width: 200px;
+  width: 250px;
   background: white;
   color: black;
   border-radius: 8px;
@@ -129,9 +130,11 @@ const Popover = styled.div`
     margin: 0;
     font-weight: bold;
   }
+    
 `;
 
 const Topbar = ({ toggleSidebar }) => {
+ 
   const [isFocused, setIsFocused] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
@@ -160,6 +163,8 @@ const Topbar = ({ toggleSidebar }) => {
         <Popover isVisible={isPopoverVisible}>
           <img src="pexels-rickyrecap-2240571.jpg" alt="Profile" /> {/* Replace with your profile photo URL */}
           <p>John Doe</p> {/* Replace with dynamic username */}
+          <FaUserEdit /><Link className=" btn">  Profile</Link> {/* Replace with your edit profile button */}
+          <HiOutlineLogout /><Link  className="btn">Logout</Link> {/* Replace with your logout button */}
         </Popover>
       </ProfilePhoto>
     </TopbarWrapper>

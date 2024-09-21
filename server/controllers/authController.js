@@ -80,3 +80,12 @@ export const checkAuth = (req, res) => {
         res.json({ isAuthenticated: false });
     }
 };
+
+export const getUsers=async(req,res)=>{
+    try {
+        const users=await User.find();
+res.json(users);
+    } catch (error) {
+        console.log('error finding users', error);
+    }
+}
