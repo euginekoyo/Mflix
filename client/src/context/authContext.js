@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
 
         if (storedIsAuthenticated === 'true') {
             setIsAuthenticated(true);
+            console.log(isAdmin)
             setIsAdmin(storedIsAdmin === 'true');
         }
     }, []);
